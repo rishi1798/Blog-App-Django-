@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load crispy_forms_tags %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for message in messages %}
+        {{message}}
+    {% endfor %}
+
+    <form action="" method="POST" enctype="multipart/form-data" novalidate>
+        {% csrf_token %}
+        {% comment %} {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                    <p>{{error}}</p>
+                {% endfor %}
+    
+        {% endif %} {% endcomment %}
+
+        {% comment %} {% for form_field in form %}
+        {{form_field.label_tag}}<br>
+        {{form_field}}<br>
+        {{form_field.errors}}<br>
+        {% endfor %} {% endcomment %}
+        {{form.as_p}}
+        <button type="Submit">Create Post</button>
+    </form>
+</body>
+</html>

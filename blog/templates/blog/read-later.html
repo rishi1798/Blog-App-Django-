@@ -1,0 +1,5 @@
+{% if has_posts %}
+    {% for post in posts %}
+        {{post.title}}<br><hr>
+    {% endfor %}
+{% endif %}

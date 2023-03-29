@@ -1,0 +1,38 @@
+{% comment %} {% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Signup page {% endblock %}
+
+{% block css_files %} {% endcomment %}
+{% comment %} <link rel="stylesheet" href="{% static 'blog/post.css' %}" /> {% endcomment %}
+{% comment %} <link rel="stylesheet" href="{% static 'Applogin/index.css' %}" />
+{% endblock %} {% endcomment %}
+
+
+{% block content %}
+<h2>Hi {{name.username|upper|title}}</h2>
+
+{% if messages %}
+       
+        {% for message in messages%}
+        {{message}}
+        {% endfor %}
+    {% endif %}<br><br>
+    <form action="" method="POST" novalidate>
+        {% csrf_token %}
+
+        {% if forms.non_field_errors %}
+            {% for error in forms.non_field_errors %}
+                <p>{{error}}</p>
+            {% endfor %}
+        {% endif %}
+        {% for fm in form %}
+            {{fm.label_tag}}
+            {{fm}}
+            {{fm.errors|striptags}}<br><br>
+        {% endfor %}
+        <input type="Submit" value="Save">
+    </form>
+    <a href="{% url 'logout' %}">logout</a>
+
+{% endblock %}
